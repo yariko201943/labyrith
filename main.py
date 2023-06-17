@@ -15,7 +15,19 @@ FPS = 40
 fon = pygame.image.load(file_path(r"images\light_blue.jpg"))
 fon = pygame.transform.scale(fon, (WIN_WIDTH, WIN_HEIGHT))
 
+class Game_sprite(pygame.sprite.Sprite):
+    def init(self, x, y, width, height, image):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.image = pygame.image.load(file_path(image))
+        self.image = pygame.transform.scale(self.image, (width, height))
 
+    def show(self):
+        window.blit(self.image, (self.rect.x, self.rect.y))
+
+
+player = Game_sprite(40, 420, 55, 50,(file_path(r"images\pac-man-icon-13.jpg")))
+enemy = Game_sprite(324, 60, 27, 50,(file_path(r"images\Pink_ghost.png")))
+finish = Game_sprite(400, 10, 47, 30,(file_path(r"images\Cherry.png")))
 
 
 window = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
